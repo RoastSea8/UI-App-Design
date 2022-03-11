@@ -37,7 +37,7 @@
     size_hint_y: None
 
     MDFillRoundFlatButton:
-        text: "Continue"
+        text: root.text
         md_bg_color: "blue"
         on_press:
             app.callback(root.continueToScreen)
@@ -71,6 +71,8 @@
         id: text_field
         hint_text: root.hint_text
         text: root.text
+        icon_right: root.icon_right
+        icon_left: root.icon_left
         line_color_normal: 0, 0, 1, 1
         line_color_focus: 0, 0, 1, 1
 
@@ -99,6 +101,7 @@ ScreenManager:
             pos_hint: {"center_x": .75, "center_y": .47}
             font_size: "12sp"
         ContinueButton:
+            text: "Continue"
             continueToScreen: None
             size_hint_x: None
             width: "100dp"
@@ -119,7 +122,7 @@ ScreenManager:
         MDLabel:
             text: "Create Account"
             text_color: 0, 0, 0, 1
-            pos_hint: {"center_x": .89, "center_y": .77}
+            pos_hint: {"center_x": .75, "center_y": .77}
             font_style: "H4"
         MDIconButton:
             icon: "keyboard-backspace"
@@ -143,10 +146,11 @@ ScreenManager:
             hint_text: "Password"
             pos_hint: {"center_x": .5, "center_y": .4}
         ContinueButton:
+            text: "Continue"
             continueToScreen: "CreateAccountp2"
             size_hint_x: None
             width: "300dp"
-            pos_hint: {"center_x": .65, "center_y": .18}
+            pos_hint: {"center_x": .75, "center_y": .18}
 
     MDScreen:
         name: "CreateAccountp2"
@@ -158,34 +162,56 @@ ScreenManager:
                 app.callback("CreateAccountp1")
         AccountTextField:
             size_hint_x: None
-            width: "100dp"
+            width: "150dp"
             hint_text: "First Name"
-            pos_hint: {"center_x": .2, "center_y": .7}
+            icon_right: "account"
+            pos_hint: {"center_x": .25, "center_y": .7}
         AccountTextField:
             size_hint_x: None
-            width: "100dp"
+            width: "150dp"
             hint_text: "Last Name"
-            pos_hint: {"center_x": .6, "center_y": .7}
+            icon_right: "account"
+            pos_hint: {"center_x": .7, "center_y": .7}
         AccountTextField:
             size_hint_x: None
             width: "250dp"
             hint_text: "School"
-            pos_hint: {"center_x": .5, "center_y": .6}
+            icon_right: "school"
+            pos_hint: {"center_x": .37, "center_y": .6}
         AccountTextField:
             size_hint_x: None
-            width: "200dp"
+            width: "250dp"
             hint_text: "Subject(s)"
-            pos_hint: {"center_x": .5, "center_y": .5}
+            icon_right: "notebook"
+            pos_hint: {"center_x": .37, "center_y": .5}
         AccountTextField:
             size_hint_x: None
-            width: "200dp"
+            width: "250dp"
             hint_text: "Extracurricular(s)"
-            pos_hint: {"center_x": .5, "center_y": .4}
+            icon_right: "run"
+            pos_hint: {"center_x": .37, "center_y": .4}
         MDTextField:
+            icon_right: "text-subject"
             size_hint_x: None
-            width: "400dp"
+            width: "300dp"
             hint_text: "Anything you would like to add?"
             max_height: "200dp"
             mode: "rectangle"
             multiline: True
-            pos_hint: {"center_x": .5, "center_y": .3}
+            line_color_normal: 0, 0, 1, 1
+            line_color_focus: 0, 0, 1, 1
+            pos_hint: {"center_x": .5, "center_y": .25}
+        ContinueButton:
+            text: "Create Account"
+            continueToScreen: "Profile"
+            size_hint_x: None
+            width: "300dp"
+            pos_hint: {"center_x": .72, "center_y": .1}
+
+    MDScreen:
+        name: "Profile"
+        MDLabel:
+            text: "My Profile"
+            text_color: 0, 0, 1, 1
+            pos_hint: {"center_x": .89, "center_y": .77}
+            font_style: "H4"

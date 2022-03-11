@@ -17,7 +17,7 @@ class PasswordTextField(MDRelativeLayout):
 
 
 class ContinueButton(MDRelativeLayout):
-   pass
+    text = StringProperty()
 
 
 class CreateAccountButton(MDRelativeLayout):
@@ -33,11 +33,13 @@ class EmailTextField(MDRelativeLayout):
 class AccountTextField(MDRelativeLayout):
     text = StringProperty()
     hint_text = StringProperty()
+    icon_right = StringProperty()
+    icon_left = StringProperty()
 
 
-class Myapp(MDApp):
+class Teach4Me(MDApp):
     theme_cls = ThemeManager()
-    screenList = ["Login", "CreateAccountp1", "CreateAccountp2"]
+    screenList = ["Login", "CreateAccountp1", "CreateAccountp2", "Profile"]
 
     def build(self):
         return
@@ -54,7 +56,7 @@ class Myapp(MDApp):
 
 
 Window.size = (425, 750)
-Myapp().run()
+Teach4Me().run()
 
 #
 # from kivy.lang import Builder
