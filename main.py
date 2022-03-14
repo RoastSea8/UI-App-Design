@@ -5,36 +5,154 @@ from kivy.properties import StringProperty
 from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.theming import ThemeManager
 
+# global variables
+username = ""
+password = ""
+email = ""
+first_name = ""
+last_name = ""
+full_name = ""
+school = ""
+subject = ""
+extracurricular = ""
+about_me = ""
 
-class UsernameTextField(MDRelativeLayout):
-    text = StringProperty()
-    hint_text = StringProperty()
+class Login(MDScreen):
+
+    class LoginLabel(MDRelativeLayout):
+        pass
+
+    class UsernameTextField(MDRelativeLayout):
+        text = StringProperty()
+        hint_text = StringProperty()
+
+        def set_username(self, x):
+            global username
+            username = x
+
+    class PasswordTextField(MDRelativeLayout):
+        text = StringProperty("")
+        hint_text = StringProperty()
+
+        def set_password(self, x):
+            global password
+            password = x
+
+    class ContinueButton(MDRelativeLayout):
+        text = StringProperty()
+
+        def get_username(self):
+            global username
+            return username
+
+        def get_password(self):
+            global password
+            return password
+
+        def get_email(self):
+            global email
+            return email
+
+        def get_first_name(self):
+            global first_name
+            return first_name
+
+        def get_last_name(self):
+            global last_name
+            return last_name
+
+        def get_school(self):
+            global school
+            return school
+
+        def get_subject(self):
+            global subject
+            return subject
+
+        def get_extracurricular(self):
+            global extracurricular
+            return extracurricular
 
 
-class PasswordTextField(MDRelativeLayout):
-    text = StringProperty()
-    hint_text = StringProperty()
+class CreateAccountp1(MDScreen):
+
+    class CreateAccountLabel(MDRelativeLayout):
+        pass
+
+    class EmailTextField(MDRelativeLayout):
+        text = StringProperty()
+        hint_text = StringProperty()
+
+        def set_email(self, x):
+            global email
+            email = x
+
+class CreateAccountp2(MDScreen):
+    pass
+    class FirstNameTextField(MDRelativeLayout):
+        text = StringProperty()
+        hint_text = StringProperty()
+        icon_right = StringProperty()
+
+        def set_first_name(self, x):
+            global first_name
+            first_name = x
+
+    class LastNameTextField(MDRelativeLayout):
+        text = StringProperty()
+        hint_text = StringProperty()
+        icon_right = StringProperty()
+
+        def set_last_name(self, x):
+            global last_name
+            last_name = x
+
+    class SchoolTextField(MDRelativeLayout):
+        text = StringProperty()
+        hint_text = StringProperty()
+        icon_right = StringProperty()
+        def set_school(self, x):
+            global school
+            school = x
+
+    class SubjectTextField(MDRelativeLayout):
+        text = StringProperty()
+        hint_text = StringProperty()
+        icon_right = StringProperty()
+
+        def set_subject(self, x):
+            global subject
+            subject = x
+
+    class ExtracurricularTextField(MDRelativeLayout):
+        text = StringProperty()
+        hint_text = StringProperty()
+        icon_right = StringProperty()
+
+        def set_extracurricular(self, x):
+            global extracurricular
+            extracurricular = x
+
+    class AboutMeTextField(MDRelativeLayout):
+        text = StringProperty()
+        hint_text = StringProperty()
+        icon_right = StringProperty()
+
+        def set_about_me(self, x):
+            global about_me
+            about_me = x
 
 
-class ContinueButton(MDRelativeLayout):
-    text = StringProperty()
+class Profile(MDScreen):
+    pass
 
 
-class CreateAccountButton(MDRelativeLayout):
-   def on_press(self):
-       print("account created")
+class BackButton(MDRelativeLayout):
+    page = StringProperty()
 
 
-class EmailTextField(MDRelativeLayout):
-    text = StringProperty()
-    hint_text = StringProperty()
-
-
-class AccountTextField(MDRelativeLayout):
-    text = StringProperty()
-    hint_text = StringProperty()
-    icon_right = StringProperty()
-    icon_left = StringProperty()
+class ScreenManager(MDScreen):
+    pass
 
 
 class Teach4Me(MDApp):
@@ -45,6 +163,8 @@ class Teach4Me(MDApp):
         return
 
     def callback(self, screen):
+        global username, email, password, first_name, last_name, full_name, school, subject, extracurricular, about_me
+        full_name = first_name + " " + last_name
         currentScreen = self.root.current
         if screen is None:
             return
@@ -53,104 +173,29 @@ class Teach4Me(MDApp):
         else:
             self.root.transition.direction = "right"
         self.root.current = screen
+        if self.root.current == self.screenList[-1]:
+            profile_screen = self.root.get_screen(self.root.current)
+            profile_screen.ids['usernamelabel'].text = username
+            profile_screen.ids['schoollabel'].text = "Teaches at " + school
+            profile_screen.ids['schoollabel'].font_size = 15
+            profile_screen.ids['subjectlabel'].text = "Teaches " + subject
+            profile_screen.ids['subjectlabel'].font_size = 15
+            profile_screen.ids['extralabel'].text = "Inolved in " + extracurricular
+            profile_screen.ids['extralabel'].font_size = 15
+            if about_me == "":
+                profile_screen.ids['aboutme'].text = "No description"
+            else:
+                profile_screen.ids['aboutme'].text = about_me
+                profile_screen.ids['aboutme'].font_style = "Body1"
+                profile_screen.ids['aboutme'].font_size = 15
+                profile_screen.ids['aboutme'].pos_hint = {"center_y": .52}
+            profile_screen.ids['namelabel'].text = full_name
+            profile_screen.ids['namelabel'].font_size = 16
+            profile_screen.ids['email'].text = email
+            profile_screen.ids['email'].font_size = 16
+            profile_screen.ids['password'].text = password
+            profile_screen.ids['password'].font_size = 16
 
 
 Window.size = (425, 750)
 Teach4Me().run()
-
-#
-# from kivy.lang import Builder
-# from kivy.properties import StringProperty
-# from kivy.uix.screenmanager import Screen
-#
-# from kivymd.icon_definitions import md_icons
-# from kivymd.app import MDApp
-# from kivymd.uix.list import OneLineIconListItem
-#
-#
-# Builder.load_string(
-#     '''
-# #:import images_path kivymd.images_path
-#
-#
-# <CustomOneLineIconListItem>
-#
-#     IconLeftWidget:
-#         icon: root.icon
-#
-#
-# <PreviousMDIcons>
-#
-#     MDBoxLayout:
-#         orientation: 'vertical'
-#         spacing: dp(10)
-#         padding: dp(20)
-#
-#         MDBoxLayout:
-#             adaptive_height: True
-#
-#             MDIconButton:
-#                 icon: 'magnify'
-#
-#             MDTextField:
-#                 id: search_field
-#                 hint_text: 'Search icon'
-#                 on_text: root.set_list_md_icons(self.text, True)
-#
-#         RecycleView:
-#             id: rv
-#             key_viewclass: 'viewclass'
-#             key_size: 'height'
-#
-#             RecycleBoxLayout:
-#                 padding: dp(10)
-#                 default_size: None, dp(48)
-#                 default_size_hint: 1, None
-#                 size_hint_y: None
-#                 height: self.minimum_height
-#                 orientation: 'vertical'
-# '''
-# )
-#
-#
-# class CustomOneLineIconListItem(OneLineIconListItem):
-#     icon = StringProperty()
-#
-#
-# class PreviousMDIcons(Screen):
-#
-#     def set_list_md_icons(self, text="", search=False):
-#         '''Builds a list of icons for the screen MDIcons.'''
-#
-#         def add_icon_item(name_icon):
-#             self.ids.rv.data.append(
-#                 {
-#                     "viewclass": "CustomOneLineIconListItem",
-#                     "icon": name_icon,
-#                     "text": name_icon,
-#                     "callback": lambda x: x,
-#                 }
-#             )
-#
-#         self.ids.rv.data = []
-#         for name_icon in md_icons.keys():
-#             if search:
-#                 if text in name_icon:
-#                     add_icon_item(name_icon)
-#             else:
-#                 add_icon_item(name_icon)
-#
-#
-# class MainApp(MDApp):
-#     def __init__(self, **kwargs):
-#         super().__init__(**kwargs)
-#         self.screen = PreviousMDIcons()
-#
-#     def build(self):
-#         return self.screen
-#
-#     def on_start(self):
-#         self.screen.set_list_md_icons()
-#
-#
-# MainApp().run()
