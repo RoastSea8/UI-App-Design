@@ -177,24 +177,24 @@ class Teach4Me(MDApp):
             profile_screen = self.root.get_screen(self.root.current)
             profile_screen.ids['usernamelabel'].text = username
             profile_screen.ids['schoollabel'].text = "Teaches at " + school
-            profile_screen.ids['schoollabel'].font_size = 15
+            profile_screen.ids['schoollabel'].font_size = 23
             profile_screen.ids['subjectlabel'].text = "Teaches " + subject
-            profile_screen.ids['subjectlabel'].font_size = 15
+            profile_screen.ids['subjectlabel'].font_size = 23
             profile_screen.ids['extralabel'].text = "Inolved in " + extracurricular
-            profile_screen.ids['extralabel'].font_size = 15
+            profile_screen.ids['extralabel'].font_size = 23
             if about_me == "":
                 profile_screen.ids['aboutme'].text = "No description"
             else:
                 profile_screen.ids['aboutme'].text = about_me
                 profile_screen.ids['aboutme'].font_style = "Body1"
-                profile_screen.ids['aboutme'].font_size = 15
-                profile_screen.ids['aboutme'].pos_hint = {"center_y": .52}
+                profile_screen.ids['aboutme'].font_size = 25
+                profile_screen.ids['aboutme'].pos_hint = {"center_x": .55, "center_y": .52}
             profile_screen.ids['namelabel'].text = full_name
-            profile_screen.ids['namelabel'].font_size = 16
+            profile_screen.ids['namelabel'].font_size = 25
             profile_screen.ids['email'].text = email
-            profile_screen.ids['email'].font_size = 16
+            profile_screen.ids['email'].font_size = 25
             profile_screen.ids['password'].text = password
-            profile_screen.ids['password'].font_size = 16
+            profile_screen.ids['password'].font_size = 25
 
 
 Window.size = (425, 750)
