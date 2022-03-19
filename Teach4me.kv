@@ -1,3 +1,10 @@
+<Teach4MeImg>:
+    Image:
+        id: teach_4_me_img
+        allow_stretch: True
+        size_hint: 0.5, 0.5
+        pos_hint: {"center_x": .5, "center_y": .9}
+        source: "teach4me.png"
 <LoginLabel>:
     MDLabel:
         text: "Login"
@@ -187,6 +194,7 @@ ScreenManager:
     name: "Login"
     id: login
     MDScreen:
+        Teach4MeImg:
         LoginLabel:
         UsernameTextField:
             pos_hint: {"center_x": .5, "center_y": .6}
@@ -216,6 +224,7 @@ ScreenManager:
     name: "CreateAccountp1"
     id: ca_p1
     MDScreen:
+        Teach4MeImg:
         CreateAccountLabel:
         BackButton:
             page: "Login"
@@ -235,6 +244,7 @@ ScreenManager:
     name: "CreateAccountp2"
     id: ca_p2
     MDScreen:
+        Teach4MeImg:
         BackButton:
             page: "CreateAccountp1"
         FirstNameTextField:
@@ -271,13 +281,14 @@ ScreenManager:
         Line:
             points: 0, self.height / 2.3, self.width, self.height / 2.3
     MDScreen:
-        MDToolbar:
-            elevation: 10
-            title: "My Profile"
-            md_bg_color: 0, 0, 1, 1
-            pos_hint: {"center_y": .9}
+        Teach4MeImg:
+        MDLabel:
+            id: myprofilelabel
+            text: "My Profile"
+            font_size: self.width / 14
+            pos_hint: {"center_x": .53, "center_y": .82}
         Image:
-            id: _img
+            id: default_pfp_img
             size_hint: 0.3, 0.3
             pos_hint: {"center_x": .2, "center_y": .7}
             source: "default_pfp.png"
@@ -290,7 +301,6 @@ ScreenManager:
             id: schoollabel
             text: ""
             pos_hint: {"center_x": .9, "center_y": .7}
-            font_size: 25
         MDLabel:
             id: subjectlabel
             text: ""
